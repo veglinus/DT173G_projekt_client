@@ -1,0 +1,32 @@
+
+
+@import 'colors';
+@import 'admin';
+
+
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+$animate: all 0.2s ease-in-out;
+
+body {
+    font-family: 'Merriweather', 'Times New Roman', serif;
+    font-weight: 300;
+    h1, h2 {
+        font-family: Lora, 'Times New Roman', serif;
+        font-weight: bold;
+    }
+    
+
+    a:active {
+        text-decoration: underline;
+    }
+    a:hover {
+        // https://codepen.io/mxttsco/pen/KgodYm
+        transition: $animate;
+        transition-duration: 0.75s;
+    }
+}
+
+
+
