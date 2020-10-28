@@ -16,7 +16,7 @@ const files = {
     css: "src/**/*.css",
     sass: "src/sass/*.scss",
     js: "src/**/*.js",
-    imgs: "src/assets/*",
+    imgs: "src/assets/*.jpg",
     assets: "src/assets/*"
 }
 

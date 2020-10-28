@@ -1,4 +1,11 @@
+"use strict";
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 // For editing products in backend
+
 /*
 var currentelement;
 //window.onload = getData(); // Onload, fyll table med data
@@ -173,3 +180,89 @@ function status(response) {
     }
 }
 */
+// For main functions
+var api = "http://127.0.0.1:8000/api/";
+var client = "/";
+var cv;
+var kontakt;
+var projekt;
+
+window.onload = function () {
+  //getData("hem");
+  prepare();
+};
+
+function prepare() {
+  // Prepares the other pages for viewing so they're ready
+  console.log('preparing data');
+  cv = getData(client + 'cv.html', 'GET', false);
+  kontakt = getData(client + 'kontakt.html', 'GET', false);
+  projekt = getData(client + 'projekt.html', 'GET', false);
+  console.log(projekt);
+}
+
+function getData(url, method, json) {
+  fetch(url, {
+    method: method,
+    mode: 'cors'
+  }).then(status) // Kolla om status är okej
+
+  /*
+  .then(response => { // Konvertera
+      if (json === true) {
+          response = response.json();
+      }
+  })*/
+  .then(function (response) {
+    console.log(response);
+    return response;
+  })["catch"](function (error) {
+    console.log('Error: ' + error);
+    return;
+  });
+  ;
+}
+
+function navigate(_x) {
+  return _navigate.apply(this, arguments);
+}
+
+function _navigate() {
+  _navigate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(view) {
+    var oldcontent, data;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            // remove old data on page and replace with new view
+            oldcontent = document.getElementById('content');
+            oldcontent.innerHTML = ""; // animate away
+
+            _context.next = 4;
+            return getData(client + view, 'GET', false);
+
+          case 4:
+            data = _context.sent;
+            // animate in
+            oldcontent.innerHTML = view; // create a html shard and fetch GET it, then replace old data with new with an animation
+
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _navigate.apply(this, arguments);
+}
+
+function next() {
+  changeDots();
+}
+
+function previous() {
+  changeDots();
+}
+
+function changeDots() {// todo
+}

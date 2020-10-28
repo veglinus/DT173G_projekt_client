@@ -1,32 +1,132 @@
-
-
-@import 'colors';
-@import 'admin';
-
-
-
 $a-tags: 'a, a:active, a:hover, a:visited';
 $a-tags-hover: 'a:active, a:hover';
 $animate: all 0.2s ease-in-out;
 
+@import 'colors';
+@import 'admin';
+
+.flex {
+    display: flex;
+}
+
 body {
+    height: 100vh;
+    margin: 0!important;
+    padding: 0!important;
+
+
     font-family: 'Merriweather', 'Times New Roman', serif;
     font-weight: 300;
     h1, h2 {
         font-family: Lora, 'Times New Roman', serif;
         font-weight: bold;
     }
-    
+    h1:first-of-type {
+        margin-top: 0;
+        padding-top: 0.67em;
+    }
+    p {
+       line-height: 2; 
+    }
+    nav {
+        display: none;
+        ul {
+            list-style: none;
 
-    a:active {
+            li {
+                display: inline-block;
+
+                /*
+                a {
+                    text-decoration: none;
+                }*/
+            }
+        }
+    }
+
+    #main {
+        height: 46vh;
+        background-color: $main;
+        h1 {
+            text-align: center;
+            color: #575757; 
+        }
+        #mainflex {
+            p {
+                font-size: 17px;
+            }
+            justify-content: space-around;
+            margin-left: 2%;
+            margin-right: 2%;
+            div {
+                margin-right: 1%;
+                margin-left: 1%;
+                img {
+                    width: 100%;
+                    height: 20vh;
+                }
+            }
+        }
+
+    }
+    #secondary {
+        height: 46vh;
+        p:first-of-type {
+            padding-top: 1em;
+            margin-top: 0;
+        }
+        //background-color: blue;
+
+        display: flex;
+        overflow: auto;
+        flex-wrap: nowrap;
+        scroll-snap-type: x mandatory;
+
+        .page {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 100%;
+            height: 100%;
+
+            .card {
+                border-radius: 25px;
+                height: auto;
+                width: 80%;
+                margin: 5%;
+                border: 20px solid $main;
+                background-color: white;
+                h3 {
+                    text-align: center;
+                }
+                p {
+                    margin: 5%;
+                }
+            }
+        }
+    }
+
+    nav ul li span:active { // TODO: Do this with JavaScript
         text-decoration: underline;
     }
-    a:hover {
+    span:hover {
         // https://codepen.io/mxttsco/pen/KgodYm
         transition: $animate;
         transition-duration: 0.75s;
     }
+    .mobile {
+        display: none;
+    }
+
+    .btn {
+        border: 1px solid white;
+        background-color: white;
+        border-radius: 25px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 8px 14px;
+    }
+
+    @import 'footer';
 }
 
 
-
+@import 'desktop';
