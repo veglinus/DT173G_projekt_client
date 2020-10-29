@@ -1,20 +1,17 @@
-// For editing products in backend
-
-// TODO: hantera jobb och sites
-
-
 var backend = "http://127.0.0.1:8000/api/";
 var currentelement;
-window.onload = onLoad(); // Onload, fyll table med data
+window.onload = onLoad();
 
 function onLoad() {
+
+    
+
     getData('courses');
     getData('sites');
     getData('jobs');
 }
 
-async function getData(what) {
-    
+async function getData(what) { // What är vad vi ska hämta, courses, sites, jobs
     fetch(backend + what, {
         method: 'GET',
         mode: 'cors'
@@ -23,19 +20,19 @@ async function getData(what) {
     .then(response => response.json()) // Konvertera
     .then(response => {
 
-        var table = document.querySelector("#" + what + " tbody");
-        //console.log(table);
+        var table = document.querySelector("#" + what + " tbody"); // Ändrar selectorn till bodyn av vad vi hämtar, tex #courses tbody
+
         response.forEach(row => {
             var newrow = table.insertRow(0); // Skapa en ny rad
 
             switch (what) {
                 case 'courses':
                     var index = 0;
-                    Object.keys(row).forEach(key => {
+                    Object.keys(row).forEach(key => { // Iterera genom varje par av key & value
 
                         var newcell = newrow.insertCell(index); // Ny cell
                         newcell.innerHTML = row[key]; // Fyll cell med value
-                        newcell.className = key; // Sätt cellens class till keyname
+                        newcell.className = key; // Sätt cellens class till keyname för css
         
                         if (index === 3) { // Ändra kursplan till länkar
                             var old = newcell.innerHTML;
@@ -47,30 +44,45 @@ async function getData(what) {
         
                         index++;
                     });
+
+                    var deletebutton = newrow.insertCell(index);
+                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "courses")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
                     
                     break;
                 
                 case 'sites':
-                    var cell1 = newrow.insertCell(0);
+                    var cell1 = newrow.insertCell(0); // Standard, nya celler
                     var cell2 = newrow.insertCell(1);
-                    cell1.innerHTML = `<a href='${row["url"]}'>${row["name"]}</a>`;
+                    cell1.innerHTML = `<a href='${row["url"]}'>${row["name"]}</a>`; // Sätt in data
                     cell2.innerHTML = row["description"];
+                    cell1.contentEditable = "true"; // Gör editable
+                    cell2.contentEditable = "true";
+
+                    var deletebutton = newrow.insertCell(index); // TODO fix the function delete
+                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "sites")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
                     break;
             
                 case 'jobs':
                     var cell1 = newrow.insertCell(0);
                     var cell2 = newrow.insertCell(1);
                     var cell3 = newrow.insertCell(2);
+                    var cell4 = newrow.insertCell(3);
                     cell1.innerHTML = row["name"];
                     cell2.innerHTML = row["description"];
-                    cell3.innerHTML = row["startdate"] + " - " + row["enddate"];
+                    cell3.innerHTML = row["startdate"];
+                    cell4.innerHTML = row["enddate"];
+                    cell1.contentEditable = "true";
+                    cell2.contentEditable = "true";
+                    cell3.contentEditable = "true";
+                    cell4.contentEditable = "true";
+                    var deletebutton = newrow.insertCell(index); // TODO fix the function delete
+                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "jobs")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
                     break;
                 default:
                     break;
             }
 
-            var deletebutton = newrow.insertCell(index); // TODO fix the function delete
-            deletebutton.innerHTML = `<a href='#' onclick='deleteCourse("${row['code']}")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+            
 
         });
     }
@@ -86,10 +98,11 @@ async function getData(what) {
 }
 
 function reload() {
+    /*
     var tbody = document.getElementsByTagName("tbody");
     tbody.forEach(element => {
         element.innerHTML = "";
-    });
+    });*/
     onLoad();
 }
 
@@ -111,19 +124,21 @@ function trackOff() { // Trackar om en cell förlorat fokus
             var parent = element.parentElement; // Hittar parent av elementet klickat på
             var index = parent.firstChild.innerHTML; // Hittar första elementet av parent, alltså kurskoden som är index
     
-            updateOne(index, what, this.innerHTML);
+            var type = element.parentElement.parentElement.parentElement.id; // Vilken table som klickats
+
+            updateOne(index, what, this.innerHTML, type);
         }
     }));
 }
 
-function updateOne(index, what, newdata) {
+function updateOne(index, what, newdata, type) {
     var senddata = {
         'index': index, // vilken rad, alltså code som är index
         'what': what, // vilken kolumn ska vi ändra på
         'newvalue': newdata // det nya värdet
     }
 
-    fetch('http://localhost/DT173G_moment5_server/updateone.php', {
+    fetch(backend + type, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -177,8 +192,9 @@ myForm.addEventListener('submit', (event) => {
 
 function addCourse() {
     const form = new FormData(myForm);
+    var type = document.getElementById('type').value;
 
-    fetch('http://localhost/DT173G_moment5_server/create.php', {
+    fetch(backend + type, {
         method: 'POST',
         mode: 'cors',
         body: form
@@ -195,6 +211,7 @@ function addCourse() {
 
     }).catch(function(error) {
         console.log('Error: ' + error);
+        alert('Error: ' + error);
     });
 
 }
@@ -206,5 +223,64 @@ function status(response) {
       return Promise.resolve(response)
     } else {
       return Promise.reject(new Error(response.statusText))
+    }
+}
+
+function formChange() {
+    var form = document.getElementById("type").value;
+    var content = document.getElementById("formcontent");
+    switch (form) {
+        case 'courses':
+            content.innerHTML = `
+            <label for="code">Kurskod:</label><br>
+            <input type="text" name="code" id="code" required><br><br>
+    
+            <label for="name">Kursnamn:</label><br>
+            <input type="text" name="name" id="name" required><br><br>
+        
+            <label for="progression">Progression:</label><br>
+            <input type="text" name="progression" id="progression" required><br><br>
+    
+            <label for="syllabus">Kursplan:</label><br>
+            <input type="url" name="syllabus" id="syllabus" required><br><br>
+
+            <input type="submit" value="Lägg till">
+            `;
+            break;
+    
+        case 'jobs':
+            content.innerHTML = `
+            <label for="name">Namn:</label><br>
+            <input type="text" name="name" id="name" required><br><br>
+
+            <label for="description">Beskrivning:</label><br>
+            <input type="text" name="description" id="description" required><br><br>
+        
+            <label for="startdate">Från:</label><br>
+            <input type="text" name="startdate" id="startdate" required><br><br>
+    
+            <label for="enddate">Till:</label><br>
+            <input type="text" name="enddate" id="enddate" required><br><br>
+
+            <input type="submit" value="Lägg till">
+            `;
+            break;
+        
+        case 'sites':
+            content.innerHTML = `
+            <label for="name">Namn:</label><br>
+            <input type="text" name="name" id="name" required><br><br>
+    
+            <label for="url">Url:</label><br>
+            <input type="url" name="url" id="url" required><br><br>
+        
+            <label for="description">Beskrivning:</label><br>
+            <input type="text" name="description" id="description" required><br><br>
+
+            <input type="submit" value="Lägg till">
+            `;
+            break;
+        default:
+            break;
     }
 }

@@ -9,6 +9,21 @@
 <body>
     <h1>Administration</h1>
 
+    <h2>Lägg till data</h2>
+
+    <form action="" id="form">
+
+        <label for="type">Välj vad du vill lägga till:</label><br><br>
+        <select name="type" id="type" onchange="formChange()">
+            <option value="">--Välj--</option>
+            <option value="courses">Kurs</option>
+            <option value="jobs">Jobb</option>
+            <option value="sites">Site</option>
+        </select><br><br>
+
+        <div id="formcontent"></div>
+    </form>
+
     <h2>Kurser:</h2>
     <table id="courses">
         <thead>
@@ -21,39 +36,23 @@
         <tbody></tbody>
     </table>
 
-    <h2>Lägg till kurs</h2>
-
-    <form action="https://linush.com/arkiv/dt173gsrv/create.php" id="form">
-        <label for="code">Kurskod:</label><br>
-        <input type="text" name="code" id="code" required><br><br>
-
-        <label for="name">Kursnamn:</label><br>
-        <input type="text" name="name" id="name" required><br><br>
-    
-        <label for="progression">Progression:</label><br>
-        <input type="text" name="progression" id="progression" required><br><br>
-
-        <label for="syllabus">Kursplan:</label><br>
-        <input type="text" name="syllabus" id="syllabus" required><br><br>
-
-        <input type="submit" value="Lägg till kurs">
-    </form>
-
-    <table id="jobs">
-        <thead>
-            <th>Namn</th>
-            <th>Beskrivning</th>
-            <th>När</th>
-            <th></th>
-        </thead>
-        <tbody></tbody>
-    </table>
-
+    <h2>Sites:</h2>
     <table id="sites">
         <thead>
             <th>Namn</th>
             <th>Beskrivning</th>
             <th></th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Jobb:</h2>
+    <table id="jobs">
+        <thead>
+            <th>Namn</th>
+            <th>Beskrivning</th>
+            <th>Från</th>
+            <th>Till</th>
         </thead>
         <tbody></tbody>
     </table>
