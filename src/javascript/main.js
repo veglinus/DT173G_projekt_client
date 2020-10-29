@@ -7,19 +7,20 @@ var projekt;
 
 window.onload = function() {
     //getData("hem");
-    prepare();
+    //prepare();
 }
 
 function prepare() { // Prepares the other pages for viewing so they're ready
     console.log('preparing data');
-    cv = getData(client + 'cv.html', 'GET', false);
-    kontakt = getData(client + 'kontakt.html', 'GET', false);
-    projekt = getData(client + 'projekt.html', 'GET', false);
+    cv = getData2(client + 'cv.html', 'GET', false);
+    kontakt = getData2(client + 'kontakt.html', 'GET', false);
+    projekt = getData2(client + 'projekt.html', 'GET', false);
 
     console.log(projekt);
 }
 
-function getData(url, method, json) {
+
+function getData2(url, method, json) {
     fetch(url, {
         method: method,
         mode: 'cors'
@@ -46,7 +47,7 @@ async function navigate(view) { // remove old data on page and replace with new 
     oldcontent.innerHTML = "";
     // animate away
 
-    var data = await getData(client + view, 'GET', false);
+    var data = await getData2(client + view, 'GET', false);
     // animate in
     oldcontent.innerHTML = view;
 

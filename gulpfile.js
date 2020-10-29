@@ -37,10 +37,10 @@ function copyAssets() {
 function minifyJS() {
     return src(files.js)
         .pipe(concat("main.js"))
-        
+        /*
         .pipe(babel({
             presets: ['@babel/env']
-        }))
+        }))*/
         //.pipe(uglify())
         .pipe(dest('pub/js'))
         .pipe(browserSync.stream())

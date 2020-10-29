@@ -1,67 +1,96 @@
-"use strict";
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 // For editing products in backend
 
-/*
-var currentelement;
-//window.onload = getData(); // Onload, fyll table med data
+// TODO: hantera jobb och sites
 
-function reload() {
-    var tbody = document.getElementById("coursesbody");
-    tbody.innerHTML = "";
-    getData();
+
+var backend = "http://127.0.0.1:8000/api/";
+var currentelement;
+window.onload = onLoad(); // Onload, fyll table med data
+
+function onLoad() {
+    getData('courses');
+    getData('sites');
+    getData('jobs');
 }
 
-function getCourses() {
-    fetch('http://localhost/DT173G_moment5_server/read.php', {
+async function getData(what) {
+    
+    fetch(backend + what, {
         method: 'GET',
         mode: 'cors'
     })
     .then(status) // Kolla om status är okej
     .then(response => response.json()) // Konvertera
     .then(response => {
-    
-        var table = document.getElementById("coursesbody");
-        //console.log(response);
 
+        var table = document.querySelector("#" + what + " tbody");
+        //console.log(table);
         response.forEach(row => {
             var newrow = table.insertRow(0); // Skapa en ny rad
 
-            var cell1 = newrow.insertCell(0); // Och 5 nya celler
-            var cell2 = newrow.insertCell(1);
-            var cell3 = newrow.insertCell(2);
-            var cell4 = newrow.insertCell(3);
-            var cell5 = newrow.insertCell(4);
+            switch (what) {
+                case 'courses':
+                    var index = 0;
+                    Object.keys(row).forEach(key => {
 
-            // Maybe make this into a edit-button instead
-            cell1.contentEditable = "true";
-            cell2.contentEditable = "true";
-            cell3.contentEditable = "true";
+                        var newcell = newrow.insertCell(index); // Ny cell
+                        newcell.innerHTML = row[key]; // Fyll cell med value
+                        newcell.className = key; // Sätt cellens class till keyname
+        
+                        if (index === 3) { // Ändra kursplan till länkar
+                            var old = newcell.innerHTML;
+                            newcell.innerHTML = `<a href='${old}'>Kursplan</a>`;
+                        }
+                        if (index !== 1) { // Gör element editable
+                            newcell.contentEditable = "true";
+                        }
+        
+                        index++;
+                    });
+                    
+                    break;
+                
+                case 'sites':
+                    var cell1 = newrow.insertCell(0);
+                    var cell2 = newrow.insertCell(1);
+                    cell1.innerHTML = `<a href='${row["url"]}'>${row["name"]}</a>`;
+                    cell2.innerHTML = row["description"];
+                    break;
+            
+                case 'jobs':
+                    var cell1 = newrow.insertCell(0);
+                    var cell2 = newrow.insertCell(1);
+                    var cell3 = newrow.insertCell(2);
+                    cell1.innerHTML = row["name"];
+                    cell2.innerHTML = row["description"];
+                    cell3.innerHTML = row["startdate"] + " - " + row["enddate"];
+                    break;
+                default:
+                    break;
+            }
 
-            cell1.className = 'kurskod';
-            cell2.className = 'kursnamn';
-            cell3.className = "progression";
-            cell4.className = 'link';
-            cell5.className = 'link';
+            var deletebutton = newrow.insertCell(index); // TODO fix the function delete
+            deletebutton.innerHTML = `<a href='#' onclick='deleteCourse("${row['code']}")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
 
-            cell1.innerHTML = row["code"]; // Tryck in data i dessa 5 celler
-            cell2.innerHTML = row["name"];
-            cell3.innerHTML = row["progression"];
-            cell4.innerHTML = `<a href='${row['syllabus']}'>Kursplan</a>`;
-            cell5.innerHTML = `<a href='#' onclick='deleteCourse("${row['code']}")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
         });
     }
+    /*
     ).then(function() {
         trackCells();
         trackOff(); // Tracka om celler redigeras nu efter att de har skapats
     } 
+    */
     ).catch(function(error) {
-        console.log('Error: ' + error);
-    });;
+        console.log('Error:' + error);
+    });
+}
+
+function reload() {
+    var tbody = document.getElementsByTagName("tbody");
+    tbody.forEach(element => {
+        element.innerHTML = "";
+    });
+    onLoad();
 }
 
 function trackCells() {
@@ -86,7 +115,6 @@ function trackOff() { // Trackar om en cell förlorat fokus
         }
     }));
 }
-
 
 function updateOne(index, what, newdata) {
     var senddata = {
@@ -114,14 +142,15 @@ function updateOne(index, what, newdata) {
 }
 
 
-function deleteCourse(data) {
+function del(data, what) {
+
     var senddata = {
         'code': data
     }
-    var res = confirm("Är du säker på att du vill ta bort kursen?");
+    var res = confirm("Är du säker på att du vill ta bort detta?");
 
     if (res === true) {
-        fetch('http://localhost/DT173G_moment5_server/delete.php', {
+        fetch(backend + what, {
             method: 'DELETE',
             mode: 'cors',
             body: JSON.stringify(senddata)
@@ -179,90 +208,72 @@ function status(response) {
       return Promise.reject(new Error(response.statusText))
     }
 }
-*/
 // For main functions
-var api = "http://127.0.0.1:8000/api/";
-var client = "/";
+const api = "http://127.0.0.1:8000/api/";
+const client = "/";
 var cv;
 var kontakt;
 var projekt;
 
-window.onload = function () {
-  //getData("hem");
-  prepare();
-};
-
-function prepare() {
-  // Prepares the other pages for viewing so they're ready
-  console.log('preparing data');
-  cv = getData(client + 'cv.html', 'GET', false);
-  kontakt = getData(client + 'kontakt.html', 'GET', false);
-  projekt = getData(client + 'projekt.html', 'GET', false);
-  console.log(projekt);
+window.onload = function() {
+    //getData("hem");
+    //prepare();
 }
 
-function getData(url, method, json) {
-  fetch(url, {
-    method: method,
-    mode: 'cors'
-  }).then(status) // Kolla om status är okej
+function prepare() { // Prepares the other pages for viewing so they're ready
+    console.log('preparing data');
+    cv = getData2(client + 'cv.html', 'GET', false);
+    kontakt = getData2(client + 'kontakt.html', 'GET', false);
+    projekt = getData2(client + 'projekt.html', 'GET', false);
 
-  /*
-  .then(response => { // Konvertera
-      if (json === true) {
-          response = response.json();
-      }
-  })*/
-  .then(function (response) {
-    console.log(response);
-    return response;
-  })["catch"](function (error) {
-    console.log('Error: ' + error);
-    return;
-  });
-  ;
+    console.log(projekt);
 }
 
-function navigate(_x) {
-  return _navigate.apply(this, arguments);
-}
 
-function _navigate() {
-  _navigate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(view) {
-    var oldcontent, data;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // remove old data on page and replace with new view
-            oldcontent = document.getElementById('content');
-            oldcontent.innerHTML = ""; // animate away
-
-            _context.next = 4;
-            return getData(client + view, 'GET', false);
-
-          case 4:
-            data = _context.sent;
-            // animate in
-            oldcontent.innerHTML = view; // create a html shard and fetch GET it, then replace old data with new with an animation
-
-          case 6:
-          case "end":
-            return _context.stop();
+function getData2(url, method, json) {
+    fetch(url, {
+        method: method,
+        mode: 'cors'
+    })
+    .then(status) // Kolla om status är okej
+    /*
+    .then(response => { // Konvertera
+        if (json === true) {
+            response = response.json();
         }
-      }
-    }, _callee);
-  }));
-  return _navigate.apply(this, arguments);
+    })*/
+    .then(response => {
+        console.log(response);
+        return response;
+    }).catch(function(error) {
+        console.log('Error: ' + error);
+        return;
+    });;
 }
 
+
+async function navigate(view) { // remove old data on page and replace with new view
+    var oldcontent = document.getElementById('content');
+    oldcontent.innerHTML = "";
+    // animate away
+
+    var data = await getData2(client + view, 'GET', false);
+    // animate in
+    oldcontent.innerHTML = view;
+
+
+// create a html shard and fetch GET it, then replace old data with new with an animation
+}
 function next() {
-  changeDots();
+    changeDots();
 }
 
 function previous() {
-  changeDots();
+    changeDots();
+
+    
 }
 
-function changeDots() {// todo
+function changeDots() {
+    // todo
 }
