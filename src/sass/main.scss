@@ -44,8 +44,15 @@ body {
         }
     }
 
-    #main {
+    .main {
         height: 46vh;
+    }
+    .subpage {
+        width: 0%;
+    }
+
+    #home {
+        width: 100%;
         background-color: $main;
         h1 {
             text-align: center;

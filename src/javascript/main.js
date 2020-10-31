@@ -1,46 +1,32 @@
 // For main functions
 const api = "http://127.0.0.1:8000/api/";
-const client = "/";
+
 var cv;
 var kontakt;
 var projekt;
 
 window.onload = function() {
     //getData("hem");
-    //prepare();
+    prepare();
 }
 
 function prepare() { // Prepares the other pages for viewing so they're ready
-    console.log('preparing data');
-    cv = getData2(client + 'cv.html', 'GET', false);
-    kontakt = getData2(client + 'kontakt.html', 'GET', false);
-    projekt = getData2(client + 'projekt.html', 'GET', false);
 
-    console.log(projekt);
 }
 
-
-function getData2(url, method, json) {
-    fetch(url, {
-        method: method,
-        mode: 'cors'
-    })
-    .then(status) // Kolla om status är okej
-    /*
-    .then(response => { // Konvertera
-        if (json === true) {
-            response = response.json();
-        }
-    })*/
-    .then(response => {
-        console.log(response);
-        return response;
-    }).catch(function(error) {
-        console.log('Error: ' + error);
-        return;
-    });;
+function next() {
+    changeDots();
 }
 
+function previous() {
+    changeDots();
+
+    
+}
+
+function changeDots() {
+    // todo
+}
 
 async function navigate(view) { // remove old data on page and replace with new view
     var oldcontent = document.getElementById('content');

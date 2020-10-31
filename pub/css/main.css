@@ -54,22 +54,26 @@ body {
                 a {
                     text-decoration: none;
                 }*/ }
-  body #main {
-    height: 46vh;
+  body .main {
+    height: 46vh; }
+  body .subpage {
+    width: 0%; }
+  body #home {
+    width: 100%;
     background-color: #FFE8DC; }
-    body #main h1 {
+    body #home h1 {
       text-align: center;
       color: #575757; }
-    body #main #mainflex {
+    body #home #mainflex {
       justify-content: space-around;
       margin-left: 2%;
       margin-right: 2%; }
-      body #main #mainflex p {
+      body #home #mainflex p {
         font-size: 17px; }
-      body #main #mainflex div {
+      body #home #mainflex div {
         margin-right: 1%;
         margin-left: 1%; }
-        body #main #mainflex div img {
+        body #home #mainflex div img {
           width: 100%;
           height: 20vh; }
   body #secondary {
@@ -117,8 +121,11 @@ body {
     text-align: center;
     width: 100%;
     height: 8vh;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+    /*
+    $footer-border: 2px solid black;
+    border-top: $footer-border;
+    border-bottom: $footer-border;
+    */
     display: flex; }
     body footer #dleft {
       margin-left: 2%; }
