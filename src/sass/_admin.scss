@@ -5,40 +5,44 @@ table {
         padding: 5px 10px;
         border-bottom: 1px solid #CCC;
     }
-    td {
-        #{$a-tags} { // https://css-tricks.com/snippets/sass/sass-things-links/
-            color: darken(#f542b0, 20%);
-        }
-        #{$a-tags-hover} {
-            color: #f542b0;
-        }
-    }
     tr:hover {
         background-color: #EEE;
     }
     .progression, .link {
         text-align: center;
     }
-
-    a {
-        img {
-            width: 32px;
-            height: 32px;
-        }
-    }
 }
 
-form {
-    label {
-        font-weight: bold;
+#admin {
+    table {
+        td {
+            #{$a-tags} { // https://css-tricks.com/snippets/sass/sass-things-links/
+                color: darken(#f542b0, 20%);
+            }
+            #{$a-tags-hover} {
+                color: #f542b0;
+            }
+        }
+        a {
+            img {
+                width: 32px;
+                height: 32px;
+            }
+        }
     }
-    input[type=submit] {
-        background-color: darken(#f542b0, 20%);
-        color: white;
-        text-decoration: none;
-        border: none;
-        border-radius: 6px;
-        
-        padding: 12px 20px;
+
+    form {
+        label {
+            font-weight: bold;
+        }
+        input[type=submit] {
+            background-color: darken(#f542b0, 20%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            
+            padding: 12px 20px;
+        }
     }
 }

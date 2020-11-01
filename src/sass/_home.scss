@@ -1,0 +1,61 @@
+#homepage {
+    #home {
+        background-color: $main;
+        h1 {
+            text-align: center;
+            color: #575757; 
+        }
+        #mainflex {
+            p {
+                font-size: 17px;
+            }
+            justify-content: space-around;
+            margin-left: 2%;
+            margin-right: 2%;
+            div {
+                margin-right: 1%;
+                margin-left: 1%;
+                img {
+                    width: 100%;
+                    height: 20vh;
+                }
+            }
+        }
+
+    }
+    #secondary {
+        height: 46vh;
+        p:first-of-type {
+            padding-top: 1em;
+            margin-top: 0;
+        }
+        //background-color: blue;
+
+        display: flex;
+        overflow: auto;
+        flex-wrap: nowrap;
+        scroll-snap-type: x mandatory;
+
+        .slideboxes {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 100%;
+            height: 100%;
+
+            .card {
+                border-radius: 25px;
+                height: auto;
+                width: 80%;
+                margin: 5%;
+                border: 20px solid $main;
+                background-color: white;
+                h3 {
+                    text-align: center;
+                }
+                p {
+                    margin: 5%;
+                }
+            }
+        }
+    }
+}

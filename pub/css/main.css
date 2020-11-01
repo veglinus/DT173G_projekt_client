@@ -4,22 +4,25 @@ table {
     text-align: left;
     padding: 5px 10px;
     border-bottom: 1px solid #CCC; }
-  table td a, table td a:active, table td a:hover, table td a:visited {
-    color: #c60b7e; }
-  table td a:active, table td a:hover {
-    color: #f542b0; }
   table tr:hover {
     background-color: #EEE; }
   table .progression, table .link {
     text-align: center; }
-  table a img {
-    width: 32px;
-    height: 32px; }
 
-form label {
+#admin table td a, #admin table td a:active, #admin table td a:hover, #admin table td a:visited {
+  color: #c60b7e; }
+
+#admin table td a:active, #admin table td a:hover {
+  color: #f542b0; }
+
+#admin table a img {
+  width: 32px;
+  height: 32px; }
+
+#admin form label {
   font-weight: bold; }
 
-form input[type=submit] {
+#admin form input[type=submit] {
   background-color: #c60b7e;
   color: white;
   text-decoration: none;
@@ -39,7 +42,7 @@ body {
   body h1, body h2 {
     font-family: Lora, 'Times New Roman', serif;
     font-weight: bold; }
-  body h1:first-of-type {
+  body h1:first-of-type, body h2 {
     margin-top: 0;
     padding-top: 0.67em; }
   body p {
@@ -54,53 +57,73 @@ body {
                 a {
                     text-decoration: none;
                 }*/ }
+
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+  body .page {
+    display: none;
+    width: 100%;
+    animation: fade 0.8s; }
+    body .page h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-block-end: 0.67em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px; }
   body .main {
     height: 46vh; }
-  body .subpage {
-    width: 0%; }
-  body #home {
-    width: 100%;
+  body #homepage #home {
     background-color: #FFE8DC; }
-    body #home h1 {
+    body #homepage #home h1 {
       text-align: center;
       color: #575757; }
-    body #home #mainflex {
+    body #homepage #home #mainflex {
       justify-content: space-around;
       margin-left: 2%;
       margin-right: 2%; }
-      body #home #mainflex p {
+      body #homepage #home #mainflex p {
         font-size: 17px; }
-      body #home #mainflex div {
+      body #homepage #home #mainflex div {
         margin-right: 1%;
         margin-left: 1%; }
-        body #home #mainflex div img {
+        body #homepage #home #mainflex div img {
           width: 100%;
           height: 20vh; }
-  body #secondary {
+  body #homepage #secondary {
     height: 46vh;
     display: flex;
     overflow: auto;
     flex-wrap: nowrap;
     scroll-snap-type: x mandatory; }
-    body #secondary p:first-of-type {
+    body #homepage #secondary p:first-of-type {
       padding-top: 1em;
       margin-top: 0; }
-    body #secondary .page {
+    body #homepage #secondary .slideboxes {
       scroll-snap-align: start;
       flex: 0 0 auto;
       width: 100%;
       height: 100%; }
-      body #secondary .page .card {
+      body #homepage #secondary .slideboxes .card {
         border-radius: 25px;
         height: auto;
         width: 80%;
         margin: 5%;
         border: 20px solid #FFE8DC;
         background-color: white; }
-        body #secondary .page .card h3 {
+        body #homepage #secondary .slideboxes .card h3 {
           text-align: center; }
-        body #secondary .page .card p {
+        body #homepage #secondary .slideboxes .card p {
           margin: 5%; }
+  body #kontakt {
+    background-color: #E8DCFF; }
+    body #kontakt .pageinside {
+      margin-left: 2%;
+      margin-right: 2%; }
+      body #kontakt .pageinside h2 {
+        text-align: center; }
   body nav ul li span:active {
     text-decoration: underline; }
   body span:hover {
@@ -121,20 +144,25 @@ body {
     text-align: center;
     width: 100%;
     height: 8vh;
-    /*
-    $footer-border: 2px solid black;
-    border-top: $footer-border;
-    border-bottom: $footer-border;
-    */
     display: flex; }
     body footer #dleft {
       margin-left: 2%; }
     body footer #dright {
       margin-right: 2%; }
-    body footer #dmiddle p {
-      margin-top: 0;
-      margin-bottom: 0;
-      padding: 0; }
+    body footer #dmiddle {
+      height: 30px;
+      margin-top: calc(8vh - 30px); }
+    body footer .dot {
+      cursor: pointer;
+      width: 10px;
+      height: 10px;
+      margin: 0 2px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+      background-color: #bbb; }
+    body footer .active, body footer .dot:hover {
+      background-color: #717171; }
     body footer div {
       flex: 33%; }
       body footer div img {

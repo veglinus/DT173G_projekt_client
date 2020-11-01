@@ -36,13 +36,13 @@ function copyAssets() {
 // Minifiera och sammanslår JS
 function minifyJS() {
     return src(files.js)
-        .pipe(concat("main.js"))
+        .pipe(concat("javascript/main.js"))
         /*
         .pipe(babel({
             presets: ['@babel/env']
         }))*/
         //.pipe(uglify())
-        .pipe(dest('pub/js'))
+        .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
 

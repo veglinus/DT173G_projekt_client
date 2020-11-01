@@ -21,7 +21,7 @@ body {
         font-family: Lora, 'Times New Roman', serif;
         font-weight: bold;
     }
-    h1:first-of-type {
+    h1:first-of-type, h2 {
         margin-top: 0;
         padding-top: 0.67em;
     }
@@ -44,73 +44,37 @@ body {
         }
     }
 
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    .page {
+        display: none;
+        width: 100%;
+        animation: fade 0.8s;
+
+        h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+    }
     .main {
         height: 46vh;
     }
-    .subpage {
-        width: 0%;
-    }
 
-    #home {
-        width: 100%;
-        background-color: $main;
-        h1 {
-            text-align: center;
-            color: #575757; 
-        }
-        #mainflex {
-            p {
-                font-size: 17px;
-            }
-            justify-content: space-around;
-            margin-left: 2%;
-            margin-right: 2%;
-            div {
-                margin-right: 1%;
-                margin-left: 1%;
-                img {
-                    width: 100%;
-                    height: 20vh;
-                }
-            }
-        }
 
-    }
-    #secondary {
-        height: 46vh;
-        p:first-of-type {
-            padding-top: 1em;
-            margin-top: 0;
-        }
-        //background-color: blue;
 
-        display: flex;
-        overflow: auto;
-        flex-wrap: nowrap;
-        scroll-snap-type: x mandatory;
+    @import 'home';
+    @import 'kontakt';
+    @import 'cv';
 
-        .page {
-            scroll-snap-align: start;
-            flex: 0 0 auto;
-            width: 100%;
-            height: 100%;
-
-            .card {
-                border-radius: 25px;
-                height: auto;
-                width: 80%;
-                margin: 5%;
-                border: 20px solid $main;
-                background-color: white;
-                h3 {
-                    text-align: center;
-                }
-                p {
-                    margin: 5%;
-                }
-            }
-        }
-    }
 
     nav ul li span:active { // TODO: Do this with JavaScript
         text-decoration: underline;

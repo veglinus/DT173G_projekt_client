@@ -18,7 +18,7 @@
         </nav>
     </header>
 
-    <div id="content">
+    <div id="homepage" class="page">
 
         <div id="home" class="main">
             <h1>Linus Hvenfelt</h1>
@@ -27,11 +27,11 @@
                 <div>
                     <p>Webbutvecklare från Kungälv. Jobbar mest med PHP, Flutter, JS och CSS.</p>
                     
-                    <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig.</p>
+                    <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig. Frilansar även som ljustekniker för livesower.</p>
                     <p>Se mer av mitt arbete:</p>
                     <!--
                     <span class="btn">Github</span>
-                    <span class="btn">Projekt</span>
+                    <span class="btn" onclick="setPage('projekt')">Projekt</span>
                     -->
                 </div>
 
@@ -42,45 +42,103 @@
             </div>
         </div>
 
-        <div class="main subpage">
-            
-        </div>
-
-
         <div id="secondary">
-            <div class="page">
+            <div class="slideboxes">
                 <div class="card">
                     <h3>Vegohjälpen</h2>
                     <p>exempeltext</p>
                 </div>
             </div>
-            <div class="page">
+            <div class="slideboxes">
                 <p>testpage2</p>
             </div>
-            <div class="page">
+            <div class="slideboxes">
                 <p>testpage3</p>
             </div>
-            <div class="page">
+            <div class="slideboxes">
                 <p>testpage4</p>
             </div>
 
         </div>
     </div>
 
+    <div id="cv" class="page">
+        <h2>CV</h2>
+
+        <h2>Kurser:</h2>
+        <table id="courses">
+            <thead>
+                <th>Kurskod</th>
+                <th>Kursnamn</th>
+                <th>Progression</th>
+                <th>Kursplan</th>
+                <th></th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    
+        <h2>Sites:</h2>
+        <table id="sites">
+            <thead>
+                <th>Namn</th>
+                <th>Beskrivning</th>
+                <th></th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    
+        <h2>Jobb:</h2>
+        <table id="jobs">
+            <thead>
+                <th>Namn</th>
+                <th>Beskrivning</th>
+                <th>Från</th>
+                <th>Till</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="projekt" class="page">
+        <h2>projekt</h2>
+
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+    </div>
+
+    <div id="kontakt" class="page">
+
+        <div class="pageinside">
+            <h2>Kontakt</h2>
+            <form action="mailto:linushvenfelt@gmail.com">
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" id="email" required><br><br>
+                <label for="textarea">Meddelande:</label><br>
+                <textarea name="textarea" id="textarea" cols="30" rows="10" required></textarea><br>
+                <input type="submit" value="Skicka">
+            </form>
+        </div>
+
+    </div>
+
     <footer>
-        <div id="dleft" onclick="previous()">
+        <div id="dleft" onclick="plusDivs(-1)">
             <img src="assets/left.png" alt="<-">
         </div>
         <div id="dmiddle">
-            <p>Hem</p>
-            <span>....</span>
+            <span class="dot" onclick="setPage(1)"></span>
+            <span class="dot" onclick="setPage(2)"></span>
+            <span class="dot" onclick="setPage(3)"></span>
+            <span class="dot" onclick="setPage(4)"></span>
+
         </div>
-        <div id="dright" onclick="next()">
+        <div id="dright" onclick="plusDivs(+1)">
             <img src="assets/right.png" alt="->">
         </div>
         
     </footer>
     
-    <script src="js/main.js"></script>
+    <script src="javascript/main.js"></script>
 </body>
 </html>

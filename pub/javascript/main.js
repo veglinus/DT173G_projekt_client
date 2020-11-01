@@ -1,17 +1,32 @@
 var backend = "http://127.0.0.1:8000/api/";
-var currentelement;
+
 window.onload = onLoad();
+var admin = false;
 
 function onLoad() {
+    var editable = false;
+    if (window.location.pathname === 'admin.html') {
+        editable = true;
+        admin = true;
+    }
 
-    
+    var authenticated = false; // temp variable for testing
+    var loginform = document.getElementById("login");
+    var adminstuff = document.getElementById("adminstuff");
 
-    getData('courses');
-    getData('sites');
-    getData('jobs');
+    if (authenticated === true) {
+        loginform.style.display = "none";
+        adminstuff.style.display = "initial";
+        getData('courses', editable);
+        getData('sites', editable);
+        getData('jobs', editable);
+    } else {
+        loginform.style.display = "initial";
+        adminstuff.style.display = "none";
+    }
 }
 
-async function getData(what) { // What är vad vi ska hämta, courses, sites, jobs
+async function getData(what, editable) { // What är vad vi ska hämta, courses, sites, jobs
     fetch(backend + what, {
         method: 'GET',
         mode: 'cors'
@@ -45,8 +60,11 @@ async function getData(what) { // What är vad vi ska hämta, courses, sites, jo
                         index++;
                     });
 
-                    var deletebutton = newrow.insertCell(index);
-                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "courses")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    if (editable === true) {
+                        var deletebutton = newrow.insertCell(index);
+                        deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "courses")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    }
+
                     
                     break;
                 
@@ -55,11 +73,16 @@ async function getData(what) { // What är vad vi ska hämta, courses, sites, jo
                     var cell2 = newrow.insertCell(1);
                     cell1.innerHTML = `<a href='${row["url"]}'>${row["name"]}</a>`; // Sätt in data
                     cell2.innerHTML = row["description"];
-                    cell1.contentEditable = "true"; // Gör editable
-                    cell2.contentEditable = "true";
 
-                    var deletebutton = newrow.insertCell(index); // TODO fix the function delete
-                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "sites")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    if (editable === true) {
+                        cell1.contentEditable = "true"; // Gör editable
+                        cell2.contentEditable = "true";
+                        var deletebutton = newrow.insertCell(index); // TODO fix the function delete
+                        deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "sites")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    }
+
+
+                    
                     break;
             
                 case 'jobs':
@@ -71,12 +94,15 @@ async function getData(what) { // What är vad vi ska hämta, courses, sites, jo
                     cell2.innerHTML = row["description"];
                     cell3.innerHTML = row["startdate"];
                     cell4.innerHTML = row["enddate"];
-                    cell1.contentEditable = "true";
-                    cell2.contentEditable = "true";
-                    cell3.contentEditable = "true";
-                    cell4.contentEditable = "true";
-                    var deletebutton = newrow.insertCell(index); // TODO fix the function delete
-                    deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "jobs")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    if (editable === true) {
+                        cell1.contentEditable = "true";
+                        cell2.contentEditable = "true";
+                        cell3.contentEditable = "true";
+                        cell4.contentEditable = "true";
+                        var deletebutton = newrow.insertCell(index); // TODO fix the function delete
+                        deletebutton.innerHTML = `<a href='#' onclick='del("${row["id"]}", "jobs")'><img src="assets/delete.svg" alt="Ta bort"></a>`;
+                    }
+                    
                     break;
                 default:
                     break;
@@ -88,8 +114,11 @@ async function getData(what) { // What är vad vi ska hämta, courses, sites, jo
     }
     /*
     ).then(function() {
-        trackCells();
-        trackOff(); // Tracka om celler redigeras nu efter att de har skapats
+
+        if (editable === true) {
+            trackCells();
+            trackOff(); // Tracka om celler redigeras nu efter att de har skapats
+        }
     } 
     */
     ).catch(function(error) {
@@ -106,6 +135,7 @@ function reload() {
     onLoad();
 }
 
+var currentelement;
 function trackCells() {
     const cells = document.querySelectorAll("td:not(.link)");
     cells.forEach(element => element.addEventListener("click", function() {
@@ -113,7 +143,6 @@ function trackCells() {
         currentelement = element.innerHTML;
     }));
 }
-
 function trackOff() { // Trackar om en cell förlorat fokus
     var cells = document.querySelectorAll("td:not(.link)");
     cells.forEach(element => element.addEventListener("blur", function() {
@@ -183,12 +212,6 @@ function del(data, what) {
         });
     }
 }
-
-const myForm = document.getElementById("form");
-myForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    addCourse();
-});
 
 function addCourse() {
     const form = new FormData(myForm);
@@ -284,45 +307,98 @@ function formChange() {
             break;
     }
 }
-// For main functions
-const api = "http://127.0.0.1:8000/api/";
 
-var cv;
-var kontakt;
-var projekt;
+
+if (admin === true) {
+    const myForm = document.getElementById("form");
+    myForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        addCourse();
+    });
+}
+
+
+/*
+
+window.onload = fillData();
+
+
+function fillData() {
+    getData('courses', true);
+    getData('sites', true);
+    getData('jobs', true);
+}
+
+function getFrontendData(what) { // What är vad vi ska hämta, courses, sites, jobs
+    fetch(backend + what, {
+        method: 'GET',
+        mode: 'cors'
+    })
+    .then(status) // Kolla om status är okej
+    .then(response => response.json()) // Konvertera
+    .then(response => {
+        var fill = document.getElementById(what);
+
+
+
+    }).catch(function(error) {
+        console.log('Error:' + error);
+    });
+}
+
+*/
+var slideIndex = 1;
+
+// 1 = hem, 2 = projekt, 3 = cv, 4 = kontakt
 
 window.onload = function() {
-    //getData("hem");
-    prepare();
-}
-
-function prepare() { // Prepares the other pages for viewing so they're ready
-
-}
-
-function next() {
-    changeDots();
-}
-
-function previous() {
-    changeDots();
-
+    if (window.location.pathname === "/") {
+        showDivs(slideIndex);
+    }
     
 }
 
-function changeDots() {
-    // todo
+function setPage(n) { // For indicator dots
+    if (isNaN(n)) {
+        switch (n) {
+            case 'hem':
+                n = 1;
+                break;
+            case 'projekt':
+                n = 2;
+                break;
+            case 'cv':
+                n = 3;
+                break;
+            case 'kontakt':
+                n = 4;
+                break;
+            default:
+                n = 1;
+                break;
+        }
+    }
+    showDivs(slideIndex = n);
 }
+function plusDivs(n) { // Om man klickar höger/vänster
+    showDivs(slideIndex += n);
+}
+  
+function showDivs(n) {
+    console.log(n);
+    var i;
+    var x = document.getElementsByClassName("page");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";  
+    }
+    x[slideIndex-1].style.display = "block";  
 
-async function navigate(view) { // remove old data on page and replace with new view
-    var oldcontent = document.getElementById('content');
-    oldcontent.innerHTML = "";
-    // animate away
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    dots[slideIndex-1].className += " active";
 
-    var data = await getData2(client + view, 'GET', false);
-    // animate in
-    oldcontent.innerHTML = view;
-
-
-// create a html shard and fetch GET it, then replace old data with new with an animation
 }
