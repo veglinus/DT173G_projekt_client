@@ -5,7 +5,7 @@ Byggd med HTML, JS och CSS. Hämtar info från en Laravel server.
 ## Todo
 * [ ] Auth & testning backend
 * [ ] Frontend
-* [ ] Dela upp admin.js samt admin.scss till bara admin.html
+* [X] Dela upp admin.js samt admin.scss till bara admin.html
 
 ## Running
 

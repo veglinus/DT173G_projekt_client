@@ -1,29 +1,28 @@
+// Only load for admin.html
+
 var backend = "http://127.0.0.1:8000/api/";
 
 window.onload = onLoad();
 var admin = false;
+var editable = false;
+var authenticated = false; // TODO: Temp variable
 
 function onLoad() {
     var editable = false;
-    if (window.location.pathname === 'admin.html') {
+    if (window.location.pathname === 'admin.html') { // TODO: Move out to separate js file only for admin.html
         editable = true;
         admin = true;
     }
-
-    var authenticated = false; // temp variable for testing
     var loginform = document.getElementById("login");
     var adminstuff = document.getElementById("adminstuff");
 
     if (authenticated === true) {
         loginform.style.display = "none";
         adminstuff.style.display = "initial";
-        getData('courses', editable);
-        getData('sites', editable);
-        getData('jobs', editable);
-    } else {
-        loginform.style.display = "initial";
-        adminstuff.style.display = "none";
     }
+    getData('courses', editable);
+    getData('sites', editable);
+    getData('jobs', editable);
 }
 
 async function getData(what, editable) { // What är vad vi ska hämta, courses, sites, jobs
@@ -136,6 +135,10 @@ function reload() {
 }
 
 var currentelement;
+
+// TODO: Move to admin.js
+
+
 function trackCells() {
     const cells = document.querySelectorAll("td:not(.link)");
     cells.forEach(element => element.addEventListener("click", function() {
@@ -143,6 +146,8 @@ function trackCells() {
         currentelement = element.innerHTML;
     }));
 }
+
+
 function trackOff() { // Trackar om en cell förlorat fokus
     var cells = document.querySelectorAll("td:not(.link)");
     cells.forEach(element => element.addEventListener("blur", function() {
@@ -159,7 +164,6 @@ function trackOff() { // Trackar om en cell förlorat fokus
         }
     }));
 }
-
 function updateOne(index, what, newdata, type) {
     var senddata = {
         'index': index, // vilken rad, alltså code som är index

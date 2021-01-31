@@ -36,7 +36,7 @@ function plusDivs(n) { // Om man klickar höger/vänster
 }
   
 function showDivs(n) {
-    console.log(n);
+    //console.log(n);
     var i;
     var x = document.getElementsByClassName("page");
     if (n > x.length) {slideIndex = 1}

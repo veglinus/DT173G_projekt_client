@@ -35,13 +35,21 @@ function copyAssets() {
 
 // Minifiera och sammanslår JS
 function minifyJS() {
-    return src(files.js)
+    minifyAdminJS();
+    return src(["src/javascript/main.js", "src/javascript/navigation.js"])
         .pipe(concat("javascript/main.js"))
         /*
         .pipe(babel({
             presets: ['@babel/env']
         }))*/
         //.pipe(uglify())
+        .pipe(dest('pub'))
+        .pipe(browserSync.stream())
+}
+
+function minifyAdminJS() { 
+    return src(["src/javascript/admin.js", "src/javascript/navigation.js"])
+        .pipe(concat("javascript/admin.js"))
         .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
