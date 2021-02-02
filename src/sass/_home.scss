@@ -15,7 +15,7 @@
             div {
                 margin-right: 1%;
                 margin-left: 1%;
-                img {
+                #profilepic {
                     width: 100%;
                     height: 20vh;
                 }
@@ -44,7 +44,9 @@
 
             .card {
                 border-radius: 25px;
-                height: auto;
+                //height: auto;
+                height: 35vh;
+
                 width: 80%;
                 margin: 5%;
                 border: 20px solid $main;

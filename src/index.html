@@ -25,19 +25,24 @@
 
             <div class="flex" id="mainflex">
                 <div>
-                    <p>Webbutvecklare från Kungälv. Jobbar mest med PHP, Flutter, JS och CSS.</p>
+                    <p>Webbutvecklare från Kungälv. Jobbar mest med PHP, Flutter, C#, JS och CSS.</p>
                     
                     <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig. Frilansar även som ljustekniker för livesower.</p>
                     <p>Se mer av mitt arbete:</p>
                     
-                    <span class="btn">Github</span>
-                    <span class="btn" onclick="setPage('projekt')">Projekt</span>
+                    <a href="https://github.com/veglinus" class="btn-link">
+                        <span class="btn">Github <img src="assets/github.png" alt="Github icon" class="btn-icon"></span>
+                    </a>
+
+                    <a href="/projekt" class="btn-link">
+                        <span class="btn" onclick="setPage('projekt')">Projekt</span>
+                    </a>
                     
                 </div>
 
                 <div>
-                    <img src="assets/me.png" alt="">
-                    <p>test</p>
+                    <img src="assets/me.png" alt="" id="profilepic">
+                    <p class="centertxt">test</p>
                 </div>
             </div>
         </div>
@@ -45,26 +50,27 @@
         <div id="secondary">
             <div class="slideboxes">
                 <div class="card">
-                    <h3>Vegohjälpen</h2>
+                    <h3>Vegohjälpen</h3>
                     <p>Wordpress-sida med tillhörande app byggd i Flutter. Streckkodsscanner för att se vilka produkter som är veganska från vår databas med över 20 000 produkter. Livesupport med mera.</p>
                 </div>
             </div>
             <div class="slideboxes">
                 <div class="card">
-                    <h3>Vegohjälpen</h2>
-                    <p>Wordpress-sida med tillhörande app byggd i Flutter. Streckkodsscanner för att se vilka produkter som är veganska från vår databas med över 20 000 produkter. Livesupport med mera.</p>
-                </div>
-            </div>
-            <div class="slideboxes">
-                <div class="card">
-                    <h3>Github</h2>
+                    <h3>Github</h3>
                     <p>Se källkod och alla mina skolarbeten på github.</p>
                 </div>
             </div>
             <div class="slideboxes">
+                <div class="card">
+                    <h3>Ljusteknik</h3>
+                    <p>Frilansar även som ljustekniker i Göteborg. Se mer av mitt arbete som teknier här.</p>
+                </div>
+            </div>
+            <!--
+            <div class="slideboxes">
                 <p>testpage4</p>
             </div>
-
+            -->
         </div>
     </div>
 
