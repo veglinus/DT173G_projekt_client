@@ -44,7 +44,14 @@ function showDivs(n) {
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
     }
-    x[slideIndex-1].style.display = "block";  
+    console.log(n);
+
+    if (window.innerWidth > 768 && n === 1) {
+        x[slideIndex-1].style.display = "flex"; 
+    } else {
+        x[slideIndex-1].style.display = "initial"; 
+    }
+     
 
     var dots = document.getElementsByClassName("dot");
     for (i = 0; i < dots.length; i++) {

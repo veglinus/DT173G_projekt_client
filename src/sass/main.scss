@@ -50,6 +50,12 @@ body {
         }
     }
 
+    header {
+        h1 {
+            display: none;
+        }
+    }
+
     @keyframes fade {
         0% {
             opacity: 0;
@@ -99,6 +105,7 @@ body {
         text-decoration: none;
     }
     .btn {
+        margin-right: 1%;
         border: 1px solid white;
         background-color: white;
         border-radius: 25px;

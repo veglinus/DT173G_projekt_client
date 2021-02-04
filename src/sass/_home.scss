@@ -1,6 +1,7 @@
 #homepage {
     #home {
         background-color: $main;
+        display: block;
         h1 {
             text-align: center;
             color: #575757; 
@@ -21,7 +22,7 @@
                 }
             }
         }
-
+ 
     }
     #secondary {
         height: 46vh;
