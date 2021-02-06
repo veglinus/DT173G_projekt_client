@@ -44,20 +44,21 @@ function showDivs(n) {
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
     }
-    console.log(n);
+    //console.log(n);
 
-    /*
-    if (window.innerWidth > 768 && n === 1) {
-        x[slideIndex-1].style.display = "flex"; 
-    } else { */
-        x[slideIndex-1].style.display = "initial"; 
-    //}
+    x[slideIndex-1].style.display = "initial"; 
+
+    if (n === 1 || n === 4) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "initial";
+    }
      
 
-    var dots = document.getElementsByClassName("dot");
+    var dots = document.getElementsByClassName("navoption");
     for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].className = dots[i].className.replace(" underline", "");
     }
-    dots[slideIndex-1].className += " active";
+    dots[slideIndex-1].className += " underline";
 
 }

@@ -15,9 +15,15 @@ $animate: all 0.2s ease-in-out;
 .centertxt {
     text-align: center;
 }
+.mobile {
+    display: none;
+}
+.underline {
+    text-decoration: underline;
+}
 
 body {
-    height: 100vh;
+    height: 100%;
     margin: 0!important;
     padding: 0!important;
 
@@ -34,10 +40,36 @@ body {
         margin-top: 0;
         padding-top: 0.67em;
     }
+    h2 {
+        color: $purple;
+        text-align: center;
+        font-size: 2em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    }
     p {
        line-height: 2; 
     }
     // end of text
+
+    .main {
+        margin-top: 1%;
+        margin-bottom: 5%;
+        padding-bottom: 7%;
+    }
+
+    .main::before {
+        background-color: $background;
+        content: "";
+        position: absolute;
+        left: 10%;
+
+        width: 65%;
+        height: 100%;
+        padding-bottom: 3%;
+        z-index: -100;
+    }
 
 
     nav {
@@ -51,6 +83,8 @@ body {
         }
     }
 
+
+    // ANIMATION
     @keyframes fade {
         0% {
             opacity: 0;
@@ -63,53 +97,53 @@ body {
         display: none;
         width: 100%;
         animation: fade 0.8s;
-
-        h2 {
-            color: $purple;
-            text-align: center;
-            font-size: 2em;
-            margin-block-end: 0.67em;
-            margin-inline-start: 0px;
-            margin-inline-end: 0px;
-        }
     }
 
     @import 'home';
     @import 'kontakt';
     @import 'cv';
 
-
-    nav ul li span:active { // TODO: Do this with JavaScript
-        text-decoration: underline;
-    }
     span:hover {
         // https://codepen.io/mxttsco/pen/KgodYm
         transition: $animate;
         transition-duration: 0.75s;
     }
-    .mobile {
-        display: none;
-    }
 
-    .btn-link {
-        color: $dark;
-        text-decoration: none;
+
+
+    #icons {
+        display: flex;
+        justify-content: space-between;
     }
     .btn {
         margin-right: 1%;
-        border: 1px solid white;
-        color: white;
+        border: 1px solid $purple;
+        color: white; 
 
         background-color: $purple;
         border-radius: 25px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 8px 14px;
-
+        .btn-link {
+            color: $dark;
+            text-decoration: none;
+        }
         .btn-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: auto;
             vertical-align: middle;
         }
+    }
+    .btn-inverted {
+        color: $purple;
+        background-color: white;
+        border: 1px solid white;
+        border-radius: 25px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin-top: 50px;
+        padding: 10px 16px;
+
+
     }
 
     @import 'footer';

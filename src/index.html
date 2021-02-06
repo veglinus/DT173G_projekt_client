@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.typekit.net/fpx7bqw.css">
+    <link rel="stylesheet" href="https://use.typekit.net/fpx7bqw.css"> <!-- Adobe Fonts -->
     <link rel="stylesheet" href="css/main.css">
     <title>Linus Hvenfelt | Developer</title>
 </head>
@@ -11,67 +11,49 @@
     <header>
         <nav>
             <ul>
-                <li><span onclick="setPage(1);return false;">Hem</span></li>
-                <li><span onclick="setPage(2);return false;">CV</span></li>
-                <li><span onclick="setPage(3);return false;">Projekt</span></li>
-                <li><span onclick="setPage(4);return false;">Kontakt</span></li>
+                <li><span onclick="setPage(1);return false;" class="navoption">Hem</span></li>
+                <li><span onclick="setPage(2);return false;" class="navoption">CV</span></li>
+                <li><span onclick="setPage(3);return false;" class="navoption">Ljus</span></li>
+                <li><span onclick="setPage(4);return false;" class="navoption">Kontakt</span></li>
             </ul>
         </nav>
     </header>
 
     <div id="homepage" class="page">
-
         <div id="home" class="main">
-            
-
+    
             <div class="flex" id="mainflex">
                 <div id="profilebox">
-                    <img src="assets/me.png" alt="" id="profilepic">
-                    <p class="centertxt">test</p>
+                    <img src="assets/me.png" alt="" id="profilepic"><br>
+
+                    <p id="icons">
+
+                        <a href="https://github.com/veglinus" class="btn-link">
+                            <span class="btn"><img src="assets/github.png" alt="Github icon" class="btn-icon"></span>
+                        </a>
+                        
+                        <a href="https://discordapp.com/users/233704605932847104" class="btn-link">
+                            <span class="btn"><img src="assets/discord.png" alt="Discord icon" class="btn-icon"></span>
+                        </a>
+
+                        <a href="http://m.me/linus-hvenfelt" class="btn-link">
+                            <span class="btn"><img src="assets/messenger.png" alt="Messenger icon" class="btn-icon"></span>
+                        </a>
+    
+                        <a href="https://www.linkedin.com/in/linush/" class="btn-link">
+                            <span class="btn"><img src="assets/linkedin.png" alt="Linkedin icon" class="btn-icon"></span>
+                        </a>
+                    </p>
                 </div>
 
                 <div id="textbox">
                     <h1>Linus Hvenfelt</h1>
                     <p>Webbutvecklare från Kungälv. Jobbar mest med PHP, Flutter, C#, JS och CSS.</p>
-                    
-                    <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig. Frilansar även som ljustekniker för livesower.</p>
-                    <p>Se mer av mitt arbete:</p>
-                    
-                    <a href="https://github.com/veglinus" class="btn-link">
-                        <span class="btn">Github <img src="assets/github.png" alt="Github icon" class="btn-icon"></span>
-                    </a>
+                    <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig.</p>
 
-                    <a href="/projekt" class="btn-link">
-                        <span class="btn" onclick="setPage('projekt')">Projekt</span>
-                    </a>
                 </div>
-
-
-
             </div>
         </div>
-            <!--
-            <div id="secondary">
-                <div class="slideboxes">
-                    <div class="card">
-                        <h3>Vegohjälpen</h3>
-                        <p>Wordpress-sida med tillhörande app byggd i Flutter. Streckkodsscanner för att se vilka produkter som är veganska från vår databas med över 20 000 produkter. Livesupport med mera.</p>
-                    </div>
-                </div>
-                <div class="slideboxes">
-                    <div class="card">
-                        <h3>Github</h3>
-                        <p>Se källkod och alla mina skolarbeten på github.</p>
-                    </div>
-                </div>
-                <div class="slideboxes">
-                    <div class="card">
-                        <h3>Ljusteknik</h3>
-                        <p>Frilansar även som ljustekniker i Göteborg. Se mer av mitt arbete som teknier här.</p>
-                    </div>
-                </div>
-            </div>
-            -->
     </div>
 
     <div id="cv" class="page">
@@ -135,20 +117,16 @@
     </div>
 
     <footer>
-        <div id="dleft" onclick="plusDivs(-1)">
-            <img src="assets/left.png" alt="<-">
+        <i>Se mer av mitt arbete:</i><br>
+        <div id="footerdiv">
+            <a href="https://vegohjalpen.se/">
+                <span class="btn-inverted">Vegohjälpens hemsida</span>
+            </a>
+            <a href="https://vegohjalpen.se/app">
+                <span class="btn-inverted">App</span>
+            </a>
         </div>
-        <div id="dmiddle">
-            <span class="dot" onclick="setPage(1)"></span>
-            <span class="dot" onclick="setPage(2)"></span>
-            <span class="dot" onclick="setPage(3)"></span>
-            <span class="dot" onclick="setPage(4)"></span>
 
-        </div>
-        <div id="dright" onclick="plusDivs(+1)">
-            <img src="assets/right.png" alt="->">
-        </div>
-        
     </footer>
     
     <script src="javascript/main.js"></script>

@@ -1,9 +1,14 @@
 @media only screen and (min-width: 768px) {
     // dekstop
 
-    p, span {
+    p, span, label, i {
         font-size: 1.5em!important;
     }
+
+    #icons {
+        font-size: 15px!important;
+    }
+
     h2 {
         text-align: left!important;
     }
@@ -30,21 +35,7 @@
         .mgleft {
             margin-left: 20%;
         }
-        .main {
-            margin-top: 1%;
-        }
 
-        .main::before {
-            background-color: $background;
-            content: "";
-            position: absolute;
-
-            left: 10%;
-
-            width: 65%;
-            height: 100%;
-            z-index: -100;
-        }
 
         h1 {
             font-size: 3em;
@@ -88,10 +79,6 @@
                 }
             }
         }
-    }
-
-    footer {
-        display: none!important;
     }
 }
 

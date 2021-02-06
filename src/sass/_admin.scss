@@ -4,9 +4,17 @@ table {
         text-align: left;
         padding: 5px 10px;
         border-bottom: 1px solid #CCC;
+        a {
+            color: lighten($color: $blue, $amount: 10);
+        }
+    }
+    thead {
+        tr {
+            color: $purple;
+        }
     }
     tr:hover {
-        background-color: #EEE;
+        background-color: lighten($color: $background, $amount: 5);
     }
     .progression, .link {
         text-align: center;
