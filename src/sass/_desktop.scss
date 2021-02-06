@@ -4,6 +4,9 @@
     p, span {
         font-size: 1.5em!important;
     }
+    h2 {
+        text-align: left!important;
+    }
 
     .mobile {
         display: initial;
@@ -23,6 +26,10 @@
     // All pages
     body {
         background-color: none;
+
+        .mgleft {
+            margin-left: 20%;
+        }
         .main {
             margin-top: 1%;
         }
