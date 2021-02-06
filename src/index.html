@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.typekit.net/fpx7bqw.css">
     <link rel="stylesheet" href="css/main.css">
     <title>Linus Hvenfelt | Developer</title>
 </head>
 <body>
     <header>
-
+        <nav>
+            <ul>
+                <li><span onclick="setPage(1);return false;">Hem</span></li>
+                <li><span onclick="setPage(2);return false;">CV</span></li>
+                <li><span onclick="setPage(3);return false;">Projekt</span></li>
+                <li><span onclick="setPage(4);return false;">Kontakt</span></li>
+            </ul>
+        </nav>
     </header>
 
     <div id="homepage" class="page">
 
         <div id="home" class="main">
-            <h1>Linus Hvenfelt</h1>
+            
 
             <div class="flex" id="mainflex">
-                <div>
+                <div id="profilebox">
+                    <img src="assets/me.png" alt="" id="profilepic">
+                    <p class="centertxt">test</p>
+                </div>
+
+                <div id="textbox">
+                    <h1>Linus Hvenfelt</h1>
                     <p>Webbutvecklare från Kungälv. Jobbar mest med PHP, Flutter, C#, JS och CSS.</p>
                     
                     <p class="mobile">Läser just nu Webbutveckling vid Mittuniversitetet. Söker distansgig. Frilansar även som ljustekniker för livesower.</p>
@@ -32,23 +46,11 @@
                     </a>
                 </div>
 
-                <div>
-                    <img src="assets/me.png" alt="" id="profilepic">
-                    <p class="centertxt">test</p>
-                </div>
+
+
             </div>
         </div>
-
-        <aside>
-            <nav>
-                <ul>
-                    <li><span onclick="setPage(1);return false;">Hem</span></li>
-                    <li><span onclick="setPage(2);return false;">CV</span></li>
-                    <li><span onclick="setPage(3);return false;">Projekt</span></li>
-                    <li><span onclick="setPage(4);return false;">Kontakt</span></li>
-                </ul>
-            </nav>
-
+            <!--
             <div id="secondary">
                 <div class="slideboxes">
                     <div class="card">
@@ -69,79 +71,58 @@
                     </div>
                 </div>
             </div>
-        </aside>
+            -->
     </div>
 
     <div id="cv" class="page">
-        <h2>CV</h2>
+        <div class="main">
+            <h2>CV</h2>
 
-        <h2>Kurser:</h2>
-        <table id="courses">
-            <thead>
-                <th>Kurskod</th>
-                <th>Kursnamn</th>
-                <th>Progression</th>
-                <th>Kursplan</th>
-                <th></th>
-            </thead>
-            <tbody></tbody>
-        </table>
-    
-        <h2>Sites:</h2>
-        <table id="sites">
-            <thead>
-                <th>Namn</th>
-                <th>Beskrivning</th>
-                <th></th>
-            </thead>
-            <tbody></tbody>
-        </table>
-    
-        <h2>Jobb:</h2>
-        <table id="jobs">
-            <thead>
-                <th>Namn</th>
-                <th>Beskrivning</th>
-                <th>Från</th>
-                <th>Till</th>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <aside>
-            <nav>
-                <ul>
-                    <li><span onclick="setPage(1);return false;">Hem</span></li>
-                    <li><span onclick="setPage(2);return false;">CV</span></li>
-                    <li><span onclick="setPage(3);return false;">Projekt</span></li>
-                    <li><span onclick="setPage(4);return false;">Kontakt</span></li>
-                </ul>
-            </nav>
-        </aside>
+            <h2>Kurser:</h2>
+            <table id="courses">
+                <thead>
+                    <th>Kurskod</th>
+                    <th>Kursnamn</th>
+                    <th>Progression</th>
+                    <th>Kursplan</th>
+                    <th></th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        
+            <h2>Sites:</h2>
+            <table id="sites">
+                <thead>
+                    <th>Namn</th>
+                    <th>Beskrivning</th>
+                    <th></th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        
+            <h2>Jobb:</h2>
+            <table id="jobs">
+                <thead>
+                    <th>Namn</th>
+                    <th>Beskrivning</th>
+                    <th>Från</th>
+                    <th>Till</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 
-    <div id="projekt" class="page">
-        <h2>projekt</h2>
-
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
-
-        <aside>
-            <nav>
-                <ul>
-                    <li><span onclick="setPage(1);return false;">Hem</span></li>
-                    <li><span onclick="setPage(2);return false;">CV</span></li>
-                    <li><span onclick="setPage(3);return false;">Projekt</span></li>
-                    <li><span onclick="setPage(4);return false;">Kontakt</span></li>
-                </ul>
-            </nav>
-        </aside>
+    <div id="Ljus" class="page">
+        <div class="main">
+            <h2>Ljus</h2>
+            <p>Vid sidan frilansar jag även som ljustekniker för liveshower.</p>
+            <p>test</p>
+        </div>
     </div>
 
     <div id="kontakt" class="page">
-
-        <div class="pageinside">
+        <div class="pageinside main">
             <h2>Kontakt</h2>
             <form action="mailto:linushvenfelt@gmail.com">
                 <label for="email">Email:</label><br>
@@ -151,18 +132,6 @@
                 <input type="submit" value="Skicka">
             </form>
         </div>
-
-        <aside>
-            <nav>
-                <ul>
-                    <li><span onclick="setPage(1);return false;">Hem</span></li>
-                    <li><span onclick="setPage(2);return false;">CV</span></li>
-                    <li><span onclick="setPage(3);return false;">Projekt</span></li>
-                    <li><span onclick="setPage(4);return false;">Kontakt</span></li>
-                </ul>
-            </nav>
-        </aside>
-
     </div>
 
     <footer>

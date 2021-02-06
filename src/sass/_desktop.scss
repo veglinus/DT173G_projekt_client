@@ -1,77 +1,84 @@
 @media only screen and (min-width: 768px) {
     // dekstop
-    
-    .page {
-        //flex-direction: row-reverse;
+
+    p, span {
+        font-size: 1.5em!important;
+    }
+
+    .mobile {
+        display: initial;
+    }
+
+    // Homepage
+    #home {
         display: flex;
-
-        .mobile {
-            display: initial;
-        }
-
-        #home {
-            flex: 60%;
-            p, span {
-                font-size: 18px!important;
+        #mainflex {
+            margin-left: 10%;
+            #textbox {
+                margin-top: 3%;
             }
         }
-        aside {
-            flex: 40%;
-        }
-
-        #secondary {
-            height: unset!important;
-            display: unset!important;
-            scroll-snap-type: unset!important;
-
-            .slideboxes {
-                scroll-snap-align: unset!important;
-                flex: unset!important;
-                width: 100%!important;
-                height: unset!important;
-
-                .card {
-                    height: unset!important;
-
-                    p {
-                        padding-top: 0;
-                    }
-                }
-            }
-        }
-
-
     }
 
+    // All pages
     body {
+        background-color: none;
         .main {
-            height: 95vh;
-            border: 1px solid $main;
-            border-radius: 30px;
-            margin-top: 1vh;
+            margin-top: 1%;
         }
-    }
 
-    nav {
-        margin-right: 10%;
-        margin-top: 0.67em;
-        display: initial!important;
-        text-align: center;
-        ul {
-            padding-inline-start: 0px!important;
-            li {
-                margin-left: 1%;
-                margin-right: 1%;
-                font-size: 1.35em;
-                font-weight: 500;
-                a {
-                    a:active {
-                        text-decoration: underline;
+        .main::before {
+            background-color: $background;
+            content: "";
+            position: absolute;
+
+            left: 10%;
+
+            width: 65%;
+            height: 100%;
+            z-index: -100;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+    
+        #profilebox {
+            margin-top: -5%;
+        }
+        #profilepic {
+            height: 40vh!important;
+        }
+    
+        #textbox {
+            max-width: 350px;
+        }
+    
+        header {
+            display: initial!important;
+            nav {
+                margin-right: 3%;
+                margin-top: 0.67em;
+                display: initial!important;
+                text-align: right;
+                ul {
+                    margin-top: 3%;
+                    padding-inline-start: 0px!important;
+                    li {
+                        margin-right: 1.5%;
+                        font-size: 1.35em;
+                        font-weight: 500;
+                        a {
+                            a:active {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    
+                    li:last-child { // For correct spacing
+                        margin-right: 3%;
                     }
                 }
-            }
-            li:not(:last-child) { // For correct spacing
-                margin-right: 3%;
             }
         }
     }
@@ -79,22 +86,14 @@
     footer {
         display: none!important;
     }
-
-    #content {
-        display: flex;
-        #main {
-            flex: 60%;
-        }
-        #secondary {
-            flex: 40%;
-        }
-    }
 }
 
+
+/*
 @media only screen and (min-width: 1200px) {
     body {
         width: 1200px;
         margin-left: auto!important;
         margin-right: auto!important;
     }
-}
+}*/

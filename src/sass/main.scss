@@ -2,7 +2,9 @@ $a-tags: 'a, a:active, a:hover, a:visited';
 $a-tags-hover: 'a:active, a:hover';
 $animate: all 0.2s ease-in-out;
 
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+//@import url("https://use.typekit.net/fpx7bqw.css");
 
 @import 'colors';
 @import 'admin';
@@ -21,11 +23,13 @@ body {
     padding: 0!important;
 
 
-    font-family: 'Merriweather', 'Times New Roman', serif;
-    font-weight: 300;
+    // Start of text
+    font-family: kepler-std, serif;
+    font-style: normal;
+    font-weight: 400;
     h1, h2 {
-        font-family: Lora, 'Times New Roman', serif;
-        font-weight: bold;
+        font-family: didoni-urw, 'Times New Roman', serif;
+        font-weight: initial;
     }
     h1:first-of-type, h2 {
         margin-top: 0;
@@ -34,6 +38,9 @@ body {
     p {
        line-height: 2; 
     }
+    // end of text
+
+
     nav {
         display: none;
         ul {
@@ -41,18 +48,7 @@ body {
 
             li {
                 display: inline-block;
-
-                /*
-                a {
-                    text-decoration: none;
-                }*/
             }
-        }
-    }
-
-    header {
-        h1 {
-            display: none;
         }
     }
 
@@ -78,7 +74,8 @@ body {
         }
     }
     .main {
-        height: 46vh;
+        //background-color: $background;
+        //height: 46vh;
     }
 
 
@@ -107,7 +104,9 @@ body {
     .btn {
         margin-right: 1%;
         border: 1px solid white;
-        background-color: white;
+        color: white;
+
+        background-color: $purple;
         border-radius: 25px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 8px 14px;

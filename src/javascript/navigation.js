@@ -46,11 +46,12 @@ function showDivs(n) {
     }
     console.log(n);
 
+    /*
     if (window.innerWidth > 768 && n === 1) {
         x[slideIndex-1].style.display = "flex"; 
-    } else {
+    } else { */
         x[slideIndex-1].style.display = "initial"; 
-    }
+    //}
      
 
     var dots = document.getElementsByClassName("dot");
