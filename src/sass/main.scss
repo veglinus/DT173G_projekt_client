@@ -42,7 +42,6 @@ body {
     }
     h2 {
         color: $purple;
-        text-align: center;
         font-size: 2em;
         margin-block-end: 0.67em;
         margin-inline-start: 0px;
@@ -57,6 +56,10 @@ body {
         margin-top: 1%;
         margin-bottom: 5%;
         padding-bottom: 7%;
+
+
+        margin-left: 5%;
+        width: 70%;
     }
 
     .main::before {
@@ -71,17 +74,25 @@ body {
         z-index: -100;
     }
 
+    header {
+        position: fixed;
+        right: 5%;
+        top: 0;
 
-    nav {
-        display: none;
+
         ul {
             list-style: none;
 
             li {
-                display: inline-block;
+                font-size: 1.35em;
+                font-weight: 500;
+            }
+            li:not(:first-child) {
+                margin-top: 20%;
             }
         }
     }
+
 
 
     // ANIMATION
@@ -109,12 +120,6 @@ body {
         transition-duration: 0.75s;
     }
 
-
-
-    #icons {
-        display: flex;
-        justify-content: space-between;
-    }
     .btn {
         margin-right: 1%;
         border: 1px solid $purple;
@@ -147,6 +152,14 @@ body {
     }
 
     @import 'footer';
+}
+
+#ljus {
+    iframe {
+        width: 50%;
+        min-height: 300px;
+        height: auto
+    }
 }
 
 

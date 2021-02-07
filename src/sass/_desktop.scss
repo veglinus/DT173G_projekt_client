@@ -10,17 +10,29 @@
     }
 
     h2 {
-        text-align: left!important;
     }
 
     .mobile {
         display: initial;
     }
 
+    .main {
+        width: unset!important;
+        margin-left: unset!important;
+    }
+
     // Homepage
     #home {
         display: flex;
         #mainflex {
+            #profilebox {
+                max-width: 267px;
+                #icons {
+                    width: 100%!important;
+                    justify-content: space-evenly!important;
+                }
+            }
+            display: flex;
             margin-left: 10%;
             #textbox {
                 margin-top: 3%;
@@ -54,6 +66,9 @@
     
         header {
             display: initial!important;
+            position: initial;
+            right: initial;
+            top: initial;
             nav {
                 margin-right: 3%;
                 margin-top: 0.67em;
@@ -63,14 +78,16 @@
                     margin-top: 3%;
                     padding-inline-start: 0px!important;
                     li {
+                        display: inline-block!important;
                         margin-right: 1.5%;
-                        font-size: 1.35em;
-                        font-weight: 500;
                         a {
                             a:active {
                                 text-decoration: underline;
                             }
                         }
+                    }
+                    li:not(:first-child) {
+                        margin-top: initial;
                     }
                     
                     li:last-child { // For correct spacing

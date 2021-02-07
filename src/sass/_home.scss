@@ -6,6 +6,15 @@
             color: $blue;
         }
         #mainflex { // Profile pic and text-box
+            #profilebox {
+                width: fit-content;
+
+                #icons {
+                    width: 92%;
+                    display: flex;
+                    justify-content: space-evenly;
+                }
+            }
             p {
                 font-size: 17px;
             }
@@ -17,9 +26,9 @@
                 margin-left: 1%;
                 #profilepic {
                     margin-top: 10%;
-                    width: 100%;
+                    width: auto;
                     max-width: 267px;
-                    height: 20vh;
+                    height: 30vh;
 
                     #icons {
                         font-size: 18px;
