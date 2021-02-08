@@ -1,28 +1,39 @@
 // Only load for admin.html
-
 var backend = "http://127.0.0.1:8000/api/";
 
+var admin = true;
+var editable = true;
 window.onload = onLoad();
-var admin = false;
-var editable = false;
-var authenticated = false; // TODO: Temp variable
+
+// Skicka request till /check, if true; set auth = true, else false
 
 function onLoad() {
-    var editable = false;
-    if (window.location.pathname === 'admin.html') { // TODO: Move out to separate js file only for admin.html
-        editable = true;
-        admin = true;
-    }
-    var loginform = document.getElementById("login");
-    var adminstuff = document.getElementById("adminstuff");
+    fetch(backend + "check", {
+        method: 'GET',
+        mode: 'cors'
+    })
+    .then(status)
+    .then(response => response.json()).then(response => {
 
-    if (authenticated === true) {
-        loginform.style.display = "none";
-        adminstuff.style.display = "initial";
-    }
-    getData('courses', editable);
-    getData('sites', editable);
-    getData('jobs', editable);
+        console.log(response['auth']);
+        auth = response['auth'];
+
+        var loginform = document.getElementById("login");
+        var adminstuff = document.getElementById("adminstuff");
+    
+        if (auth === false) { // If not logged in, visa login
+            loginform.style.display = "initial";
+            adminstuff.style.display = "none";
+        } else { // If logged in
+            loginform.style.display = "none";
+            adminstuff.style.display = "initial";
+        }
+    
+        //console.log(auth);
+        getData('courses', editable);
+        getData('sites', editable);
+        getData('jobs', editable);
+    });
 }
 
 async function getData(what, editable) { // What är vad vi ska hämta, courses, sites, jobs
@@ -212,6 +223,7 @@ function del(data, what) {
     
         }).catch(function(error) {
             console.log('Error: ' + error);
+            alert(error);
             reload();
         });
     }
@@ -259,8 +271,8 @@ function formChange() {
     switch (form) {
         case 'courses':
             content.innerHTML = `
-            <label for="code">Kurskod:</label><br>
-            <input type="text" name="code" id="code" required><br><br>
+            <label for="id">Kurskod:</label><br>
+            <input type="text" name="id" id="id" required><br><br>
     
             <label for="name">Kursnamn:</label><br>
             <input type="text" name="name" id="name" required><br><br>
@@ -313,10 +325,58 @@ function formChange() {
 }
 
 
-if (admin === true) {
-    const myForm = document.getElementById("form");
-    myForm.addEventListener('submit', (event) => {
+const myForm = document.getElementById("form");
+myForm.addEventListener('submit', (event) => {
         event.preventDefault();
         addCourse();
+});
+
+
+// Listen to form
+
+// if submit, send call to server
+// if true response, reload page
+// else send "wrong password message"
+
+document.querySelector('form').addEventListener('submit', (event) => { // Om någon submittar login
+    event.preventDefault(); // Stoppa default
+    const form = new FormData(event.target);
+
+    console.log(form.get('email'));
+    console.log(form.get('password'));
+
+    fetch(backend + "logon", { // Skicka till API
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ // Skicka med data från form
+            email: form.get('email'),
+            password: form.get('password')
+        })
+    })
+    .then(status)
+    .then(response => response.json()) // Konvertera till JSON
+    .then(response => {
+        console.log(response);
+        if (response['auth'] == "true") { // Successs
+            console.log('success');
+            //location.reload();
+            //onLoad(); // Ladda om
+
+            var loginform = document.getElementById("login");
+            var adminstuff = document.getElementById("adminstuff");
+            loginform.style.display = "none";
+            adminstuff.style.display = "initial";
+        } else {// Om auth inte gick igenom
+
+            console.log('fail');
+            alert(response['email']); // Skicka error
+            document.getElementById("password").value = ""; // cleara password-fält
+        }
     });
-}
+
+
+    
+});
