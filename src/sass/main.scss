@@ -16,6 +16,9 @@ $animate: all 0.2s ease-in-out;
     text-align: center;
 }
 .mobile {
+    display: initial;
+}
+.desktop {
     display: none;
 }
 .underline {
@@ -35,6 +38,9 @@ body {
     h1, h2 {
         font-family: didoni-urw, 'Times New Roman', serif;
         font-weight: initial;
+    }
+    h1 {
+        color: $blue;
     }
     h1:first-of-type, h2 {
         margin-top: 0;

@@ -1,27 +1,25 @@
 @media only screen and (min-width: 768px) {
     // dekstop
 
-    p, span, label, i {
-        font-size: 1.5em!important;
-    }
 
-    #icons {
-        font-size: 15px!important;
-    }
-
-    h2 {
-    }
 
     .mobile {
-        display: initial;
+        display: none!important;
+    }
+    .desktop {
+        display: initial!important;
     }
 
     .main {
         width: unset!important;
-        margin-left: unset!important;
+    }
+    #cv, #ljus, #kontakt {
+        p {
+            max-width: 60%;
+        }
     }
 
-    // Homepage
+    // Homepage specific
     #home {
         display: flex;
         #mainflex {
@@ -44,13 +42,18 @@
     body {
         background-color: none;
 
-        .mgleft {
-            margin-left: 20%;
-        }
-
-
         h1 {
             font-size: 3em;
+        }
+        p, span, label, i {
+            font-size: 1.5em!important;
+        }
+        #icons {
+            font-size: 15px!important;
+        }
+
+        .mgleft {
+            margin-left: 20%;
         }
     
         #profilebox {
@@ -96,15 +99,12 @@
                 }
             }
         }
+
+        footer {
+            min-width: 350px;
+            width: 25%!important;
+            padding-left: 23%!important;
+            height: 12vh;
+        }
     }
 }
-
-
-/*
-@media only screen and (min-width: 1200px) {
-    body {
-        width: 1200px;
-        margin-left: auto!important;
-        margin-right: auto!important;
-    }
-}*/

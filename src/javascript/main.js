@@ -1,4 +1,5 @@
 // Only load for index.html
+// Taget och modiferat från Moment 5
 
 var backend = "http://127.0.0.1:8000/api/";
 
@@ -97,25 +98,11 @@ async function getData(what, editable) { // What är vad vi ska hämta, courses,
 
         });
     }
-    /*
-    ).then(function() {
-
-        if (editable === true) {
-            trackCells();
-            trackOff(); // Tracka om celler redigeras nu efter att de har skapats
-        }
-    } 
-    */
     ).catch(function(error) {
         console.log('Error:' + error);
     });
 }
 
 function reload() {
-    /*
-    var tbody = document.getElementsByTagName("tbody");
-    tbody.forEach(element => {
-        element.innerHTML = "";
-    });*/
     onLoad();
 }

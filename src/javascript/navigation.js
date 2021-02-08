@@ -1,4 +1,4 @@
-var slideIndex = 1;
+var slideIndex = 1; // Vilken sida vi ska börja på
 
 // 1 = hem, 2 = projekt, 3 = cv, 4 = kontakt
 
@@ -6,7 +6,6 @@ window.onload = function() {
     if (window.location.pathname === "/") {
         showDivs(slideIndex);
     }
-    
 }
 
 function setPage(n) { // For indicator dots
@@ -31,12 +30,11 @@ function setPage(n) { // For indicator dots
     }
     showDivs(slideIndex = n);
 }
-function plusDivs(n) { // Om man klickar höger/vänster
+function plusDivs(n) { // Om man klickar höger/vänster (Obsolete)
     showDivs(slideIndex += n);
 }
   
-function showDivs(n) {
-    //console.log(n);
+function showDivs(n) { // Från W3Schools, stora delar använda
     var i;
     var x = document.getElementsByClassName("page");
     if (n > x.length) {slideIndex = 1}
@@ -44,7 +42,6 @@ function showDivs(n) {
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";  
     }
-    //console.log(n);
 
     x[slideIndex-1].style.display = "initial"; 
 
@@ -60,5 +57,4 @@ function showDivs(n) {
         dots[i].className = dots[i].className.replace(" underline", "");
     }
     dots[slideIndex-1].className += " underline";
-
 }
