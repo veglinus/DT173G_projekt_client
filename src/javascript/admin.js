@@ -219,6 +219,9 @@ function addCourse() {
         senddata[key] = value;
     });
 
+    senddata['api_token'] = document.getElementById("token").value;
+    delete senddata['type'];
+
     console.log(senddata);
 
     fetch(backend + type, {
