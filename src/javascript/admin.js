@@ -37,6 +37,7 @@ async function getData(what, editable) { // What är vad vi ska hämta, courses,
                         var newcell = newrow.insertCell(index); // Ny cell
                         newcell.innerHTML = row[key]; // Fyll cell med value
                         newcell.className = key; // Sätt cellens class till keyname för css
+
         
                         if (index === 3) { // Ändra kursplan till länkar
                             var old = newcell.innerHTML;
@@ -47,6 +48,9 @@ async function getData(what, editable) { // What är vad vi ska hämta, courses,
                         }
         
                         index++;
+                        if (editable === true) {
+                            newcell.contentEditable = "true";
+                        }
                     });
 
                     if (editable === true) {
@@ -101,15 +105,13 @@ async function getData(what, editable) { // What är vad vi ska hämta, courses,
 
         });
     }
-    /*
     ).then(function() {
-
         if (editable === true) {
             trackCells();
             trackOff(); // Tracka om celler redigeras nu efter att de har skapats
         }
     } 
-    */
+    
     ).catch(function(error) {
         console.log('Error:' + error);
     });
@@ -175,6 +177,7 @@ function updateOne(index, what, newdata, type) {
 
     }).catch(function(error) {
         console.log('Error: ' + error);
+        alert("Error: " + error);
     });
 }
 
