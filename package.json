@@ -12,10 +12,12 @@
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-cwebp": "^4.0.2",
     "gulp-imagemin": "^7.1.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify-es": "^2.0.0",
+    "gulp-webp": "^4.0.1",
     "node-sass": "^4.14.1"
   },
   "scripts": {

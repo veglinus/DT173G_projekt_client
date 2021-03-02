@@ -28,7 +28,12 @@
     
             <div id="mainflex">
                 <div id="profilebox">
-                    <img src="assets/jag.jpg" alt="" id="profilepic"><br>
+                    <picture>
+                        <source srcset="assets/jag.webp" type="image/webp" class="profilepic">
+                        <source srcset="assets/jag.jpg" type="image/jpeg" class="profilepic"> 
+                        <img src="assets/jag.jpg" alt="Bild på Linus" class="profilepic">
+                    </picture>
+                    <br>
 
                     <p id="icons">
 

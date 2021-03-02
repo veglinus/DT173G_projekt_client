@@ -7,6 +7,7 @@ const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
 const del = require("del");
 const babel = require("gulp-babel");
+const webp = require('gulp-webp');
 
 const sass = require('gulp-sass'); 
 sass.compiler = require('node-sass');
@@ -38,11 +39,13 @@ function minifyJS() {
     minifyAdminJS();
     return src(["src/javascript/main.js", "src/javascript/navigation.js"])
         .pipe(concat("javascript/main.js"))
+        
         /*
         .pipe(babel({
             presets: ['@babel/env']
         }))*/
-        //.pipe(uglify())
+        .pipe(uglify())
+
         .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
@@ -50,6 +53,12 @@ function minifyJS() {
 function minifyAdminJS() { 
     return src(["src/javascript/admin.js", "src/javascript/navigation.js"])
         .pipe(concat("javascript/admin.js"))
+        /*
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))*/
+        .pipe(uglify())
+
         .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
@@ -71,7 +80,11 @@ function minifyIMGS() {
         imagemin.mozjpeg({quality: 50, progressive: true}),
         imagemin.optipng({optimizationLevel: 0})
     ]))
-    .pipe(dest('pub'))
+    
+    .pipe(dest('pub/assets'))
+    
+    .pipe(webp())
+    .pipe(dest('pub/assets'))
     .pipe(browserSync.stream())
 }
 
@@ -85,7 +98,7 @@ function clean() {
 function sassTask() {
     return src("src/sass/*.scss")
     .pipe(sourcemaps.init())
-    .pipe(sass()).on("error", sass.logError)
+    .pipe(sass({outputStyle: 'compressed'})).on("error", sass.logError)
     .pipe(dest("pub/css"))
     .pipe(sourcemaps.write())
     .pipe(browserSync.stream());
