@@ -7,6 +7,7 @@ const cleanCSS = require('gulp-clean-css');
 const imagemin = require("gulp-imagemin");
 const del = require("del");
 const babel = require("gulp-babel");
+const webp = require('gulp-webp');
 
 const sass = require('gulp-sass'); 
 sass.compiler = require('node-sass');
@@ -38,6 +39,7 @@ function minifyJS() {
     minifyAdminJS();
     return src(["src/javascript/main.js", "src/javascript/navigation.js"])
         .pipe(concat("javascript/main.js"))
+        
         /*
         .pipe(babel({
             presets: ['@babel/env']
@@ -72,7 +74,11 @@ function minifyIMGS() {
         imagemin.mozjpeg({quality: 50, progressive: true}),
         imagemin.optipng({optimizationLevel: 0})
     ]))
-    .pipe(dest('pub'))
+    
+    .pipe(dest('pub/assets'))
+    
+    .pipe(webp())
+    .pipe(dest('pub/assets'))
     .pipe(browserSync.stream())
 }
 
