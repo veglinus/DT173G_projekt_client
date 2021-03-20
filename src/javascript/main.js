@@ -1,7 +1,7 @@
 // Only load for index.html
 // Taget och modiferat från Moment 5
 
-var backend = "http://127.0.0.1:8000/api/";
+var backend = "http://127.0.0.1:8000/public/api/";
 
 window.onload = onLoad();
 var editable = false;

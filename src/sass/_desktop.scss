@@ -60,7 +60,12 @@
             margin-top: -5%;
         }
         #profilepic {
-            height: 40vh!important;
+            width: 100%!important;
+            height: 100%!important;
+            /*
+            max-height: 50vh!important;
+            max-width: 20vh!important;
+            */
         }
     
         #textbox {

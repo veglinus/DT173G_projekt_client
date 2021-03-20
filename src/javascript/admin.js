@@ -1,5 +1,5 @@
 // Only load for admin.html
-var backend = "http://127.0.0.1:8000/api/";
+var backend = "http://127.0.0.1:8000/public/api/";
 
 var admin = true;
 var editable = true;

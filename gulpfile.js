@@ -3,7 +3,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 const concat = require("gulp-concat");
 const uglify = require("gulp-uglify-es").default;
-//const cleanCSS = require('gulp-clean-css');
+const cleanCSS = require('gulp-clean-css');
 const imagemin = require("gulp-imagemin");
 const del = require("del");
 const babel = require("gulp-babel");
@@ -42,7 +42,7 @@ function minifyJS() {
         .pipe(babel({
             presets: ['@babel/env']
         }))*/
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
@@ -50,6 +50,7 @@ function minifyJS() {
 function minifyAdminJS() { 
     return src(["src/javascript/admin.js", "src/javascript/navigation.js"])
         .pipe(concat("javascript/admin.js"))
+        .pipe(uglify())
         .pipe(dest('pub'))
         .pipe(browserSync.stream())
 }
@@ -86,6 +87,7 @@ function sassTask() {
     return src("src/sass/*.scss")
     .pipe(sourcemaps.init())
     .pipe(sass()).on("error", sass.logError)
+    .pipe(cleanCSS())
     .pipe(dest("pub/css"))
     .pipe(sourcemaps.write())
     .pipe(browserSync.stream());
